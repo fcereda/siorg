@@ -14,7 +14,7 @@ Depois de clonar o repositório, digite
 ``node loaddata
 ``
 
-## Para gerar mostrar as unidades de um órgão
+## Para mostrar as unidades de um órgão
 
 ``node orgao SIGLA_ORGAO > arquivo.csv
 ``
