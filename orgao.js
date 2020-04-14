@@ -23,11 +23,9 @@ function carregarDados (filename) {
 }
 
 function mostrarOrgao (orgao) {
-	console.log(`Nome: ${ orgao.nome } (${ orgao.sigla }`)
-	console.log(`Código: ${ orgao.codigoOrgao }`)
-	console.log('${ orgao.unidades.length } unidades:')
+	console.log(`${ orgao.nome };${ orgao.sigla };${ orgao.codigoOrgao }`)
 	orgao.unidades.sort((a, b) => a.nome > b.nome ? 1 : -1)
-	.forEach(unidade => console.log(`${ unidade.nome } (${ unidade.sigla}): ${ unidade.codigoUnidade }`))
+	.forEach(unidade => console.log(`${ unidade.nome };${ unidade.sigla};${ unidade.codigoUnidade }`))
 
 	//orgao.unidades.forEach(unidade => console.log(`${ unidade.nome } (${ unidade.sigla})`))
 }
