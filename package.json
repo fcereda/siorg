@@ -1,0 +1,14 @@
+{
+  "name": "siorg",
+  "version": "0.0.1",
+  "description": "Carrega a estrutura organizacional do SIORG via API",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Fabio Cereda",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.19.2"
+  }
+}
