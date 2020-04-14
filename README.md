@@ -19,6 +19,14 @@ Depois de clonar o repositório, digite
 ``node orgao SIGLA_ORGAO > arquivo.csv
 ``
 
-Onde SIGLA_ORGAO é a sigla do órgão cujas unidades você quer ver
+Onde SIGLA_ORGAO é a sigla do órgão cujas unidades você quer ver.
+
+## Para rodar o exemplo
+
+``node server
+``
+
+E abra http://localhost:3000 no seu browser.
+
 
 

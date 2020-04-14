@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>jQuery UI Autocomplete - Default functionality</title>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+  $( function() {
+
+    const porOrdemAlfabetica = (a, b) => a.nome < b.nome ? -1 : 1
+
+    axios.get('/orgaos')
+    .then(response => {
+      let data = response.data.sort(porOrdemAlfabetica)
+      let availableTags = data.map(orgao => {
+        return {
+          label: `${ orgao.nome } (${ orgao.sigla })`,
+          id: orgao.sigla
+        }
+      })
+      $( "#orgaos" ).autocomplete({
+        source: availableTags
+      })
+
+    })
+
+    $('#orgaos').on('autocompleteselect', (e, ui) => {
+      let siglaOrgaoSelecionado = ui.item.id
+      axios.get('/orgao/' + siglaOrgaoSelecionado)
+      .then(response => {
+        let objOrgao = response.data
+        let unidades = objOrgao.unidades.sort(porOrdemAlfabetica)
+        let autocompleteData = unidades.map(unidade => {
+          return {
+            label: `${ unidade.nome } (${ unidade.sigla })`,
+            id: unidade.sigla
+          }
+        })
+        $('#unidades').autocomplete({
+          source: autocompleteData
+        })
+      })
+    })
+
+  } );
+  </script>
+
+  <style>
+
+  .select {
+    width: 40em !important;
+  }
+
+  </style>  
+</head>
+<body>
+ 
+<div class="ui-widget">
+  <label for="orgaos">Órgão: </label>
+  <input id="orgaos" class="select">
+</div>
+
+<br>
+ 
+
+ 
+<div class="ui-widget">
+  <label for="unidades">Unidade: </label>
+  <input id="unidades" class="select">
+</div>
+
+ 
+</body>
+</html>
