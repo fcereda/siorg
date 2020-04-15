@@ -6,9 +6,6 @@ let root = process.env.PWD
 
 let orgaos = carregarOrgaos ()
 
-app.get('/api', (req, res, next) => {
-	res.json('OK', 200)
-})
 
 app.get('/orgaos', (req, res, next) => {
     //let orgaos = ['MRE', 'MECON', 'MD', 'MS']
@@ -19,14 +16,14 @@ app.get('/orgaos', (req, res, next) => {
     		sigla
     	}	
     })
-    res.json(orgaosSimplificado, 200)
+    res.status(200).json(orgaosSimplificado)
 })
 
 app.get('/orgao/:orgao', (req, res) => {
 	let siglaOrgaoSolicitado = req.params.orgao.toUpperCase()
 	let orgaoSolicitado = orgaos.find(({sigla}) => sigla == siglaOrgaoSolicitado)
 	if (orgaoSolicitado)
-		return res.json(orgaoSolicitado, 200)
+		return res.status(200).json(orgaoSolicitado)
 	return res.json({ erro: 'Órgão não encontrado' }, 500)
 })
 
